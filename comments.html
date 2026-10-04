@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Comments · Our Family Genealogy</title>
+<link rel="stylesheet" href="style.css">
+</head><body>
+<header class="top"><a class="brand" href="index.html">Our Family Genealogy</a>
+<nav><a href="index.html">Home</a><a href="pettengill-ancestors.html">Biological Maternal Grandmother (Pettengill)</a><a href="biological-maternal-grandfather.html">Biological Maternal Grandfather (Foster)</a><a href="biological-paternal-grandfather.html">Biological Paternal Grandfather (Brown)</a><a href="biological-paternal-grandmother.html">Biological Paternal Grandmother (Arsenault)</a><a href="father-adoptive-line.html">Father Adoptive Line (Morse)</a><a href="mom-first-spouse-line.html">Gail Foster First Spouse (Chilman)</a><a href="interesting-ancestors-index.html">Interesting Ancestors Index</a><a href="interesting-ancestors.html">Interesting Ancestors</a><a href="photos.html">Photos</a><a href="comments.html" class=on>Comments</a></nav></header>
+<main><h1>Comments</h1>
+<p class="count">Know something about one of our ancestors, spotted a mistake, or have a question? Leave a note below.
+Comments appear on this page once they've been approved.</p>
+<form id="cform" class="comments-box cform">
+  <label>Your name<input name="name" maxlength="80" required></label>
+  <label>Which ancestor or family line is this about? <span class="opt">(optional)</span><input name="about" maxlength="120"></label>
+  <label>Comment<textarea name="message" rows="5" maxlength="3000" required></textarea></label>
+  <input name="website" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+  <button type="submit">Post comment</button>
+  <p id="cstatus" class="cstatus" role="status"></p>
+</form>
+<h2 class="sec">What people have shared</h2>
+<div id="clist" class="clist"><p class="count">Loading comments…</p></div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.39.0"></script>
+<script>
+(function(){
+  var db = window.supabase.createClient("https://bugkxpickvpzqmklgegp.supabase.co", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJ1Z2t4cGlja3ZwenFta2xnZWdwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODg5NzA0MDAsImV4cCI6MjEwNDU0NjQwMH0.eDQ7ukCG_XEpdAYa84ZFPNuu9sV_s9FwmwDJUGwKW1Q");
+  var list = document.getElementById("clist"), form = document.getElementById("cform"), status = document.getElementById("cstatus");
+  function load(){
+    db.from("comments").select("name,about,message,created_at").order("created_at",{ascending:false}).then(function(r){
+      list.innerHTML = "";
+      if (r.error) { list.innerHTML = '<p class="count">Comments could not be loaded right now.</p>'; return; }
+      if (!r.data.length) { list.innerHTML = '<p class="count">No comments yet. Be the first!</p>'; return; }
+      r.data.forEach(function(c){
+        var card = document.createElement("article"); card.className = "ccard";
+        var head = document.createElement("div"); head.className = "chead";
+        var who = document.createElement("strong"); who.textContent = c.name; head.appendChild(who);
+        var when = document.createElement("span");
+        when.textContent = new Date(c.created_at).toLocaleDateString(undefined,{year:"numeric",month:"short",day:"numeric"});
+        head.appendChild(when); card.appendChild(head);
+        if (c.about) { var a = document.createElement("div"); a.className = "cabout"; a.textContent = "About: " + c.about; card.appendChild(a); }
+        var p = document.createElement("p"); p.textContent = c.message; card.appendChild(p);
+        list.appendChild(card);
+      });
+    });
+  }
+  form.addEventListener("submit", function(e){
+    e.preventDefault();
+    if (form.website.value) return;            // spam bots fill in this hidden box
+    var btn = form.querySelector("button"); btn.disabled = true; status.textContent = "Sending…";
+    db.from("comments").insert({name: form.name.value.trim(), about: form.about.value.trim() || null,
+                                message: form.message.value.trim()}).then(function(r){
+      btn.disabled = false;
+      if (r.error) { status.textContent = "Sorry, that didn't go through. Please try again."; return; }
+      form.reset(); status.textContent = "Thank you! Your comment will appear here once it's approved.";
+    });
+  });
+  load();
+})();
+</script></main>
+<footer>Our Family Genealogy</footer>
+</body></html>

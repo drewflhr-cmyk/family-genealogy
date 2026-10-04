@@ -81,3 +81,21 @@ a.back{font-weight:600}
  .tree tr:target{background:var(--hi)}
  .tree tr:target td{background:none}
 }
+
+/* comments */
+.comments-box{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:18px;max-width:760px}
+.cform{display:flex;flex-direction:column;gap:12px;margin-bottom:8px}
+.cform label{display:flex;flex-direction:column;gap:4px;font-weight:600;font-size:.95rem}
+.cform .opt{font-weight:400;color:var(--muted)}
+.cform input,.cform textarea{font:inherit;font-weight:400;padding:9px 11px;border:1px solid var(--line);border-radius:8px;background:#fff;color:var(--ink);width:100%}
+.cform textarea{resize:vertical}
+.cform button{align-self:flex-start;font:inherit;font-weight:600;background:var(--accent);color:#fff;border:0;border-radius:8px;padding:10px 18px;cursor:pointer}
+.cform button:disabled{opacity:.6}
+.cform .hp{position:absolute;left:-9999px;width:1px;height:1px}
+.cstatus{margin:0;color:var(--accent);font-weight:600}
+.clist{display:flex;flex-direction:column;gap:12px;max-width:760px}
+.ccard{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 18px}
+.chead{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.chead span{color:var(--muted);font-size:.88rem}
+.cabout{color:var(--accent);font-size:.9rem;margin-top:2px}
+.ccard p{margin:.5em 0 0;white-space:pre-wrap}
