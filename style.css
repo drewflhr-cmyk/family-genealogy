@@ -59,3 +59,25 @@ a.back{font-weight:600}
  .cards{grid-template-columns:1fr}
  .gallery{grid-template-columns:repeat(2,1fr)}
 }
+
+/* ---- Phones and iPads: each table row becomes a stacked "person card" ---- */
+@media (max-width:900px){
+ .scroll{overflow:visible;background:none;border:0}
+ table.tree,.tree tbody{display:block}
+ .tree thead{display:none}
+ .tree tr{display:grid;grid-template-columns:1fr 1fr;gap:2px 14px;background:var(--card);
+   border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin-bottom:10px}
+ .tree td{display:block;border:0;padding:2px 0;min-width:0;overflow-wrap:anywhere}
+ .tree td:empty{display:none}
+ .tree td[data-label]:not(:empty)::before{content:attr(data-label);display:block;font-size:.72rem;
+   text-transform:uppercase;letter-spacing:.04em;color:var(--muted)}
+ .tree td.name{grid-column:1/2;font-size:1.08rem;white-space:normal;align-self:center}
+ .tree td.gen{grid-column:2/3;justify-self:end;text-align:right}
+ .tree td.gen::before{display:inline!important;margin-right:4px}
+ .tree td.bd,.tree td.dd{grid-column:1/2}
+ .tree td.bp,.tree td.dp{grid-column:2/3}
+ .tree td.notes,.tree td.line,.tree td.go{grid-column:1/-1;min-width:0}
+ .tree td.notes:not(:empty){border-top:1px solid #eee5d6;margin-top:6px;padding-top:8px}
+ .tree tr:target{background:var(--hi)}
+ .tree tr:target td{background:none}
+}
