@@ -100,3 +100,21 @@ a.back{font-weight:600}
 .cabout{color:var(--accent);font-size:.9rem;margin-top:2px}
 .ccard p{margin:.5em 0 0;white-space:pre-wrap}
 a.photo{display:inline-block;margin:4px 10px 0 0;font-weight:600;white-space:normal}
+
+/* lineage document (Corbet line) */
+.toc{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 24px}
+.toc a{color:var(--accent);background:var(--card);border:1px solid var(--line);border-radius:20px;padding:6px 14px;text-decoration:none;font-weight:600;font-size:.92rem}
+.toc a:hover{background:var(--accent-soft)}
+.lineage{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:18px 22px 16px;margin-bottom:22px;max-width:900px;scroll-margin-top:140px}
+.lineage h2{color:var(--accent);font-size:1.4rem;margin:0}
+.lineage .count{margin:2px 0 12px}
+.lineage ol{margin:0;padding-left:2.4em}
+.lineage li{padding:7px 4px;border-bottom:1px solid #eee5d6;line-height:1.5}
+.lineage li:last-child{border-bottom:0}
+.lineage li::marker{color:var(--muted);font-size:.85em}
+.lineage li.royal{font-weight:600}
+.lineage li.branch{background:var(--accent-soft);border-radius:6px}
+.lineage li.conqueror{background:var(--hi);border-radius:6px;font-weight:700}
+.lineage sup{font-size:.7em}
+.top-link{display:inline-block;margin-top:10px;font-size:.9rem}
+@media (max-width:700px){.lineage{padding:14px 14px 12px}.lineage ol{padding-left:2em}.lineage,.lineage h2{scroll-margin-top:12px}}
