@@ -30,10 +30,10 @@ footer{text-align:center;color:var(--muted);font-size:.85rem;padding:24px 16px;b
 .scroll{overflow-x:auto;background:var(--card);border:1px solid var(--line);border-radius:10px}
 table.tree{border-collapse:collapse;width:100%;font-size:.92rem}
 .tree th{position:sticky;top:0;background:#efe6d6;text-align:left;padding:8px 10px;font-weight:600;white-space:nowrap;border-bottom:1px solid var(--line)}
-.tree td{padding:7px 10px;border-bottom:1px solid #eee5d6;vertical-align:top}
-.tree td.name{font-weight:600;white-space:nowrap}
+.tree td{padding:7px 10px;border-bottom:1px solid #eee5d6;vertical-align:top;overflow-wrap:anywhere}
+.tree td.name{font-weight:600;min-width:150px;max-width:230px}
 .tree td.gen{text-align:center}
-.tree td.notes{min-width:260px}
+.tree td.notes{min-width:220px}
 .tree tr:target td{background:var(--hi)}
 .tree tr,[id]{scroll-margin-top:140px}
 a.story{white-space:nowrap;font-weight:600}
